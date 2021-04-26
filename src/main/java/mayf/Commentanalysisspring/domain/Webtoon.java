@@ -1,11 +1,14 @@
 package mayf.Commentanalysisspring.domain;
+import javax.persistence.*;
 
+@Entity
 public class Webtoon {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String dayofweek;
     private String name;
-    private String imageUrl;
-    private int comment;
+    private float star;
+    private Long people;
 
     public Long getId() {
         return id;
@@ -23,21 +26,22 @@ public class Webtoon {
         this.name = name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public float getStar() {
+        return star;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setStar(float star) {
+        this.star = star;
     }
 
-    public int getComment() {
-        return comment;
+    public Long getPeople() {
+        return people;
     }
 
-    public void setComment(int comment) {
-        this.comment = comment;
+    public void setPeople(Long people) {
+        this.people = people;
     }
+
     public String getDayofweek() {
         return dayofweek;
     }
