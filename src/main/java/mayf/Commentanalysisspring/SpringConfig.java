@@ -14,7 +14,7 @@ public class SpringConfig {
     }
 
     @Bean
-    public MemoryWebtoonRepository memoryWebtoonRepository() {ys
+    public MemoryWebtoonRepository memoryWebtoonRepository() {
         return new MemoryWebtoonRepository();
     }
 }
