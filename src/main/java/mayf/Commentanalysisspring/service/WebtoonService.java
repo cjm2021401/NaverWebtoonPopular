@@ -29,16 +29,25 @@ public class WebtoonService {
         }
 
         //같은 요일존재할시 x
-        validateDuplocateWebtoon(webtoon);
-        webtoonrepository.save(webtoon);
+        if(validateDuplocateWebtoon(webtoon)){
+            webtoonrepository.save(webtoon);
+        }
+
         return webtoon.getId();
     }
 
-    private void validateDuplocateWebtoon(Webtoon webtoon) {
+    private boolean validateDuplocateWebtoon(Webtoon webtoon) {
+
         webtoonrepository.findByDayofWeek(webtoon.getDayofweek())
                 .ifPresent(m->{
-                    throw new IllegalStateException("이미 존재하는 요일 데이터");
+                    m.setStar(((webtoon.getStar()* webtoon.getPeople())+(m.getStar()*m.getPeople()))/(webtoon.getPeople()+m.getPeople()));
+                    m.setPeople(webtoon.getPeople()+m.getPeople());
+                    webtoon.setStar(0.0F);
                 });
+        if(webtoon.getStar()==0.0F){
+            return false;
+        }
+        return true;
     }
 
     /**

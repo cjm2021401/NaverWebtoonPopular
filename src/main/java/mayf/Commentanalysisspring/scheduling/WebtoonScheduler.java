@@ -20,7 +20,7 @@ public class WebtoonScheduler {
         this.webtoonService=webtoonService;
     }
 
-   @Scheduled(cron = "0 13 8 * * *")
+   @Scheduled(cron = "0 34 23 * * *")
     public void test(){
        webtoonService.firstSetting();
        for(Webtoon data :webtoonService.findWebtoons()){
